@@ -19,10 +19,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
     console.log('Connected to MongoDB');
 });
-// app.post('/car', (req, res)=>{
-//     console.log(req.body);
-//     res.send('Form data received');
-// })
+app.get('/', (req, res)=>{
+    res.send('Form data received');
+})
 // app.post('/car1', upload.array('pictures', 12), function (req, res, next) {
 //     console.log('body',req.body);
 //     console.log('file===============',req.body);

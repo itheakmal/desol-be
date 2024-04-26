@@ -46,14 +46,7 @@ const submitCar = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-const run = async (req, res) => {
-  try {
-    res.send("ok")
-  } catch (error) {
-    
-  }
-}
+
 module.exports = {
-  submitCar,
-  run
+  submitCar
 };
