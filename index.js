@@ -1,10 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const routes = require('./Routes');
 const db = require('./Models')
 const cors = require('cors');
-const multer = require("multer")
-const upload = multer({ dest: 'uploads/' })
 require('dotenv').config()
 
 const app = express();
