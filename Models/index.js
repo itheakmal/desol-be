@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://root:UGUdMrsIivBiubf5@cluster0.0ycjwey.mongodb.net/desol?retryWrites=true&w=majority&appName=Cluster0');
+require('dotenv').config()
+mongoose.connect(process.env.DB_STRING);
 const db = mongoose.connection;
 module.exports = db;

@@ -5,11 +5,12 @@ const db = require('./Models')
 const cors = require('cors');
 const multer = require("multer")
 const upload = multer({ dest: 'uploads/' })
+require('dotenv').config()
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT;
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://desol-fe.vercel.app',
 };
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));

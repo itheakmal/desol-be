@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../Models/User");
+require("dotenv").config();
 
 const registerUser = async (req, res) => {
   try {
@@ -21,7 +22,7 @@ const loginUser = async (req, res) => {
   if (!req.body || !email || !password) {
     return res.status(400).json({ error: "Missing email or password" });
   }
-  
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ error: "Invalid email format" });
@@ -29,11 +30,9 @@ const loginUser = async (req, res) => {
 
   const passwordRegex = /^[a-zA-Z0-9]{8,}$/;
   if (!passwordRegex.test(password)) {
-    return res
-      .status(400)
-      .json({
-        error: "Password must be alphanumeric and at least 8 characters long",
-      });
+    return res.status(400).json({
+      error: "Password must be alphanumeric and at least 8 characters long",
+    });
   }
 
   try {
@@ -45,7 +44,7 @@ const loginUser = async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
-    const token = jwt.sign({ id: user.id }, "JlbWFpbCI6Iml0aGVha21hbEBnbWFpbC5jb20");
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
     res.json({ token });
   } catch (error) {
     console.error(error);
